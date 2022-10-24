@@ -27,8 +27,15 @@ const linking: LinkingOptions<RootStackParamList> = {
           },
         },
       },
+      Calc : 'calc',
+      Home : 'home',
       Modal: 'modal',
-      NotFound: '*',
+      Client: 'client',
+      Facture: 'facture',
+      Clientele: 'clientele',
+      Stats : 'stats',
+      Invent: 'inventaire',
+      Parametres : 'parametres'      
     },
   },
 };

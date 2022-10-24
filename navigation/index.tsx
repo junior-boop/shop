@@ -12,8 +12,13 @@ import { ColorSchemeName, Pressable } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
+import Client from '../screens/Client';
+import Clientele from '../screens/Clientele';
+import Inventaire from '../screens/Inventaire';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
+import Parametres from '../screens/Parametres';
+import Stats from '../screens/Stats';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
@@ -36,12 +41,19 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  const colorSchema = useColorScheme()
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Screen name="Home" component={TabOneScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Calc" component={TabTwoScreen} options = {{ headerShadowVisible : false, headerTitle : 'Liste des Dettes', headerStyle : {backgroundColor : Colors[colorSchema].elementBack}}}/>
+      <Stack.Screen name="Stats" component={Stats} options = {{ headerShadowVisible : false, headerTitle : 'Statistique', headerStyle : {backgroundColor : Colors[colorSchema].elementBack}}}/>
+      <Stack.Screen name="Invent" component={Inventaire} options = {{ headerShadowVisible : false, headerTitle : 'Inventaire', headerStyle : {backgroundColor : Colors[colorSchema].elementBack}}}/>
+      <Stack.Screen name="Facture" component={NotFoundScreen} options={{ headerShadowVisible : false, title: 'Facturier' , headerStyle : {backgroundColor : Colors[colorSchema].elementBack}}} />
+      <Stack.Screen name="Clientele" component={Clientele} options={{ headerShadowVisible : false, title: 'Clientèle' , headerStyle : {backgroundColor : Colors[colorSchema].elementBack}}} />
+      <Stack.Screen name="Parametres" component={Parametres} options={{ headerShadowVisible : false, title: 'Paramètres' , headerStyle : {backgroundColor : Colors[colorSchema].elementBack}}} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="Modal"  component={ModalScreen} options = {{ headerShadowVisible : false, headerTitle : 'Calculatrice', headerStyle : {backgroundColor : Colors[colorSchema].elementBack}}} />
+        <Stack.Screen name="Client"  component={Client} options = {{ headerShadowVisible : false, headerTitle : 'Client', headerStyle : {backgroundColor : Colors[colorSchema].elementBack}}} />
       </Stack.Group>
     </Stack.Navigator>
   );
